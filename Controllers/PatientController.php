@@ -15,20 +15,22 @@ include '..\Classes\Patient.php' ;
 include './ConnexionController.php' ; 
 class PatientController extends ConnexionController {
     
-   
+    function __construct() {
+      
+
+    }
+
     
-    public function addPatient (User $u ) {
-        	$req = $this->getDBConnection()->prepare("INSERT INTO patient (name, lastname) VALUES (:n, :p, :t )");
-			
-			$req->bindParam(':n', $u->getName());
-			$req->bindParam(':p', $u->getLastname());
-                        	
-			
-			//$type="enseignant";
+    public function addPatient (  User $u) {
+        	$req = $this->getDBConnection()->prepare("INSERT INTO patient (name, lastname) VALUES (:n, :p)");
+			$n=  $u->getName();
+                        $l= $u->getLastname();
+			$req->bindParam(':n', $n);
+			$req->bindParam(':p', $l);
+         
+			$type="enseignant";
                         $req->execute();
-			
-	
-        
+                        var_dump($req);
     }
     
 
@@ -36,10 +38,12 @@ class PatientController extends ConnexionController {
     
     }
         $pc=new PatientController(); 
-        
+    
         $user = new User(); 
+    
         $user->setName("farabi") ; 
         $user->setLastname("ddddd") ; 
+           var_dump($user) ;
     
         $pc->addPatient($user) ;
    

@@ -15,11 +15,10 @@ include '../Utils/config.php';
 abstract class ConnexionController {
   private static $cnx; // could be an array for multiple connections
   final protected function getDBConnection() {
-    if (!$this->cnx) {
+   
     $c=new config();
-    var_dump($c);
+
 		$this->cnx=$c->connexion();
-    }
     return $this->cnx;
   }
 
