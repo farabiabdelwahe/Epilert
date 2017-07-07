@@ -7,10 +7,10 @@
  */
 
 /**
- * Description of Seizure
+ * Description of config
  *
  * @author GSC
  */
-class Seizure {
+class config {
     //put your code here
 }
