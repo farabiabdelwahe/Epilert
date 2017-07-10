@@ -1,5 +1,7 @@
 <?php
 
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -33,7 +35,32 @@ class PatientController extends ConnexionController {
                         var_dump($req);
     }
     
-
+	function afficher(User $u)
+	{
+            $user = new User() ;
+             $name=$u->getName();
+             $lastname= $u->getLastname();
+          
+            
+		$req = "select * from patient where name = '$name'  and lastname = '$lastname' ";
+                
+                
+		$rep = $this->getDBConnection()->query($req);
+		$tab = $rep ->fetchAll();
+                
+                if ($rep->rowCount() == 0)
+                {
+                    echo  false ; 
+                    
+                }
+                
+                else {
+                 echo  json_encode($tab[0]) ;
+                }
+            
+             
+             
+	}
     
     
     }
@@ -43,7 +70,7 @@ class PatientController extends ConnexionController {
     
         $user->setName("farabi") ; 
         $user->setLastname("ddddd") ; 
-           var_dump($user) ;
+       
     
-        $pc->addPatient($user) ;
+        $pc->afficher($user) ;
    
